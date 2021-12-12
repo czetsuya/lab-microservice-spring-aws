@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: job-services
+server:
+  port: 8080
+  servlet:
+    context-path: /jobs
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+
+logging:
+  level:
+    root: INFO
+    com.czetsuyatech: DEBUG
