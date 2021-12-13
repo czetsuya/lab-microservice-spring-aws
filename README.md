@@ -1,6 +1,6 @@
 # Microservice Architecture with Spring
 
-Microservice is a service-oriented architecture where an application is deployed as a collection of loosely-couple 
+Microservice is a service-oriented architecture where an application is deployed as a collection of loosely-coupled 
 services. The goal is to make each service independent, fine-grained, scalable and flexible which allows faster 
 testing and release.
 
