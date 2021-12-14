@@ -1,6 +1,7 @@
 package com.czetsuyatech.applicants.web.controller;
 
 import io.github.resilience4j.retry.annotation.Retry;
+import java.net.InetAddress;
 import java.util.Arrays;
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
@@ -17,14 +18,11 @@ public class ApplicantController {
   @Value("${server.port}")
   private int port;
 
-  @Value("${server.address}")
-  private String serverAddress;
-
   @GetMapping("/applicants-by-job")
   public List<String> getApplicantsByJob() {
 
     log.debug("port={} get applicants by job", port);
-    return Arrays.asList("Steve", "Bill", "Linus", serverAddress);
+    return Arrays.asList("Steve", "Bill", "Linus", InetAddress.getLoopbackAddress().getHostAddress());
   }
 
   @Retry(name = "default", fallbackMethod = "getTopApplicantsByJobDefault")
