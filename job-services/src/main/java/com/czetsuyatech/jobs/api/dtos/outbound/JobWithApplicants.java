@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class JobWithApplicantsDto {
+public class JobWithApplicants {
 
   private String job;
   private List<String> applicants;

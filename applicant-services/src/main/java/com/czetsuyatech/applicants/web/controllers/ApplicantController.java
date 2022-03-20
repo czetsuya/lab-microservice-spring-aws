@@ -1,4 +1,4 @@
-package com.czetsuyatech.applicants.web.controller;
+package com.czetsuyatech.applicants.web.controllers;
 
 import io.github.resilience4j.retry.annotation.Retry;
 import java.net.InetAddress;

@@ -1,6 +1,6 @@
-package com.czetsuyatech.jobs.web.controller;
+package com.czetsuyatech.jobs.web.controllers;
 
-import com.czetsuyatech.jobs.api.dtos.outbound.JobWithApplicantsDto;
+import com.czetsuyatech.jobs.api.dtos.outbound.JobWithApplicants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class JobController {
 
     log.debug("get job details with applicants");
 
-    JobWithApplicantsDto result = new JobWithApplicantsDto();
+    JobWithApplicants result = new JobWithApplicants();
     result.setJob("Java Developer");
 
     result.setApplicants(applicantProxy.getApplicantsByJob());
@@ -32,7 +32,7 @@ public class JobController {
 
     log.debug("get job details with applicants");
 
-    JobWithApplicantsDto result = new JobWithApplicantsDto();
+    JobWithApplicants result = new JobWithApplicants();
     result.setJob("AWS Solutions Architect");
 
     result.setApplicants(applicantProxy.getTopApplicantsByJob());

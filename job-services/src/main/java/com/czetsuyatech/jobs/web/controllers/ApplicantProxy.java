@@ -1,4 +1,4 @@
-package com.czetsuyatech.jobs.web.controller;
+package com.czetsuyatech.jobs.web.controllers;
 
 import java.util.List;
 import org.springframework.cloud.openfeign.FeignClient;
