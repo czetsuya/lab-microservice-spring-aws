@@ -18,7 +18,7 @@ public class ApplicantController {
   @Value("${server.port}")
   private int port;
 
-  @GetMapping("/applicants-by-job")
+  @GetMapping("/")
   public List<String> getApplicantsByJob() {
 
     log.debug("port={} get applicants by job", port);
@@ -27,7 +27,7 @@ public class ApplicantController {
 
   @Retry(name = "default", fallbackMethod = "getTopApplicantsByJobDefault")
   // @CircuitBreaker(name = "default", fallbackMethod = "getTopApplicantsByJobDefault")
-  @GetMapping("/top-applicants-by-job")
+  @GetMapping("/top")
   public List<String> getTopApplicantsByJob() {
 
     log.debug("port={} get top applicants by job", port);

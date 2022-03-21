@@ -71,6 +71,12 @@ As we can see in the logs, it started from api-gateway, pass thru job-services, 
 
 ![Log trace](./docs/log_trace.jpg)
 
+## AWS Deployment
+
+### Task Definitions
+
+ENVOY_LOG_LEVEL-trace, ENABLE_ENVOY_XRAY_TRACING-1
+
 ## Services URLs
 
 ### Applicant Services
