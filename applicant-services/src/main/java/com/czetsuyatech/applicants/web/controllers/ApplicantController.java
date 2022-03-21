@@ -18,7 +18,7 @@ public class ApplicantController {
   @Value("${server.port}")
   private int port;
 
-  @GetMapping("/")
+  @GetMapping("/profiles")
   public List<String> getApplicantsByJob() {
 
     log.debug("port={} get applicants by job", port);

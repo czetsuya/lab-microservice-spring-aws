@@ -14,7 +14,7 @@ public class JobController {
 
   private final ApplicantProxy applicantProxy;
 
-  @GetMapping("/")
+  @GetMapping("/profiles")
   public ResponseEntity listJobsWithApplicantProfiles() {
 
     log.debug("get job details with applicants");
