@@ -7,8 +7,9 @@ server:
     context-path: /jobs
 logging:
   level:
-    root: DEBUG
-    com.czetsuyatech: DEBUG
+    root: info
+    com.czetsuyatech: debug
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
 app:
   ct:
     client:
@@ -17,3 +18,10 @@ app:
 feign:
   httpclient:
     enabled: true
+    connection-timeout: 5000
+  client:
+    compression:
+      response:
+        enabled: true
+      request:
+        enabled: true

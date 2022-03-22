@@ -1,34 +1,49 @@
 package com.czetsuyatech.jobs.web.config;
 
 import com.amazonaws.xray.proxies.apache.http.HttpClientBuilder;
-import feign.Feign;
-import feign.Retryer;
+import feign.Client;
 import feign.httpclient.ApacheHttpClient;
+import org.apache.http.client.config.RequestConfig;
+import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.springframework.cloud.openfeign.FeignFormatterRegistrar;
+import org.springframework.cloud.openfeign.support.FeignHttpClientProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 
-//@Configuration
+@Configuration(proxyBeanMethods = false)
 public class FeignClientConfiguration {
 
-//  @Bean
-//  public CloseableHttpClient feignClient() {
-//    return HttpClients.createDefault();
-//  }
-
   @Bean
-  public Feign.Builder feignBuilder() {
-    return Feign.builder()
-        .retryer(Retryer.NEVER_RETRY)
-        .client(new ApacheHttpClient(clientHttpRequestFactory().getHttpClient()));
+  public Client client(FeignHttpClientProperties httpClientProperties) {
+
+    final PoolingHttpClientConnectionManager poolingHttpClientConnectionManager =
+        new PoolingHttpClientConnectionManager();
+    poolingHttpClientConnectionManager.setDefaultMaxPerRoute(100);
+    poolingHttpClientConnectionManager.setMaxTotal(100);
+
+    final RequestConfig defaultRequestConfig = RequestConfig.custom()
+        .setConnectionRequestTimeout(100)
+        .setConnectTimeout(httpClientProperties.getConnectionTimeout())
+        .setSocketTimeout(100)
+        .setRedirectsEnabled(httpClientProperties.isFollowRedirects())
+        .build();
+
+    return new ApacheHttpClient(
+        HttpClientBuilder.create()
+            .setConnectionManager(poolingHttpClientConnectionManager)
+            .setDefaultRequestConfig(defaultRequestConfig)
+            .build()
+    );
   }
 
-  private HttpComponentsClientHttpRequestFactory clientHttpRequestFactory() {
+  @Bean
+  public FeignFormatterRegistrar localDateFeignFormatterRegister() {
 
-    HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(
-        HttpClientBuilder.create().useSystemProperties().build());
-    factory.setReadTimeout(10000);
-    factory.setConnectTimeout(2000);
-    factory.setConnectionRequestTimeout(2000);
-    return factory;
+    return registry -> {
+      DateTimeFormatterRegistrar registrar = new DateTimeFormatterRegistrar();
+      registrar.setUseIsoFormat(true);
+      registrar.registerFormatters(registry);
+    };
   }
 }

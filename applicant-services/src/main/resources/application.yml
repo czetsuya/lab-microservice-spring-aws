@@ -8,8 +8,9 @@ server:
 
 logging:
   level:
-    root: DEBUG
-    com.czetsuyatech: DEBUG
+    root: info
+    com.czetsuyatech: debug
+    org.springframework.web.filter.CommonsRequestLoggingFilter: debug
 
 resilience4j:
   circuitbreaker:
