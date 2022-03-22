@@ -7,10 +7,13 @@ server:
     context-path: /jobs
 logging:
   level:
-    root: INFO
+    root: DEBUG
     com.czetsuyatech: DEBUG
 app:
   ct:
     client:
       applicant:
         url: ${APPLICATION_SERVICE_URL:http://localhost:8081}
+feign:
+  httpclient:
+    enabled: true

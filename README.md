@@ -73,9 +73,60 @@ As we can see in the logs, it started from api-gateway, pass thru job-services, 
 
 ## AWS Deployment
 
-### Task Definitions
+### ECR
 
-ENVOY_LOG_LEVEL-trace, ENABLE_ENVOY_XRAY_TRACING-1
+- applicant-services
+- job-services
+
+### Cloud Map
+
+- czetsuyatech.lab (API, VPC)
+
+### Virtual Nodes
+
+- dev-vn-applicant-services
+- dev-vn-job-services
+
+### Virtual Services
+
+- dev-vs-applicant-services
+- dev-vs-job-services
+
+### ECS
+
+Cluster - dev-layer3-businessservices
+
+#### Services
+
+Service - dev-service-applicant-services
+Task Definition - dev-td-applicant-services
+
+*Containers*
+- aws-xray-daemon	amazon/aws-xray-daemon:1
+- envoy
+
+*Environment Variables*
+
+- ENVOY_LOG_LEVEL=trace
+- ENABLE_ENVOY_XRAY_TRACING=1
+- XRAY_DAEMON_PORT=2000
+
+*Parameter Store*
+
+APPLICATION_SERVICE_URL=/dev/applicant-services/APPLICATION_SERVICE_URL=http://applicant-services.czetsuyatech.lab:8081
+
+Service - dev-service-job-services
+Task Definition - dev-td-job-services
+
+*Containers*
+- aws-xray-daemon	amazon/aws-xray-daemon:1
+- envoy
+
+*Environment Variables*
+
+- ENVOY_LOG_LEVEL=trace
+- ENABLE_ENVOY_XRAY_TRACING=1
+- XRAY_DAEMON_PORT=2000
 
 ## Services URLs
 
