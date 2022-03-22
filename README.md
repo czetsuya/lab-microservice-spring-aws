@@ -19,7 +19,7 @@ This project takes advantage of the AWS infrastructure and it's services such as
 applicant-services - Dummy service that returns a list of applicant names.
 
 ```java
-@GetMapping("/applicants-by-job")
+@GetMapping("/profiles")
 public List<String> getApplicantsByJob() {
  
     log.debug("port={} get applicants by job", port);
@@ -30,7 +30,7 @@ public List<String> getApplicantsByJob() {
 job-services - Dummy service that returns a job title with a list of applicant names.
 
 ```java
-@GetMapping("/job-with-applicant-profiles")
+@GetMapping("/profiles")
 public ResponseEntity listJobsWithApplicantProfiles() {
  
     log.debug("get job details with applicants");
@@ -56,10 +56,10 @@ To call an endpoint from another service, an interface must be created with the 
 @FeignClient(name = "applicant-services")
 public interface ApplicantProxy {
  
-    @GetMapping("/applicants/applicants-by-job")
+    @GetMapping("/applicants/profiles")
     List<String> getApplicantsByJob();
  
-    @GetMapping("/applicants/top-applicants-by-job")
+    @GetMapping("/applicants/top")
     public List<String> getTopApplicantsByJob();
 }
 ```
@@ -131,9 +131,9 @@ Task Definition - dev-td-job-services
 ## Services URLs
 
 ### Applicant Services
-- http://localhost:8081/applicants/applicants-by-job
-- http://localhost:8081/applicants/top-applicants-by-job
+- http://localhost:8081/applicants/profiles
+- http://localhost:8081/applicants/top
 
 ### Job Services
-- http://localhost:8080/jobs/job-with-applicant-profiles
-- http://localhost:8080/jobs/job-with-top-applicants
+- http://localhost:8080/jobs/profiles
+- http://localhost:8080/jobs/top
