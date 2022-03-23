@@ -98,8 +98,8 @@ Cluster - dev-layer3-businessservices
 
 #### Services
 
-Service - dev-service-applicant-services
-Task Definition - dev-td-applicant-services
+- Service - dev-service-applicant-services
+- Task Definition - dev-td-applicant-services
 
 *Containers*
 - aws-xray-daemon	amazon/aws-xray-daemon:1
@@ -115,8 +115,8 @@ Task Definition - dev-td-applicant-services
 
 APPLICATION_SERVICE_URL=/dev/applicant-services/APPLICATION_SERVICE_URL=http://applicant-services.czetsuyatech.lab:8081
 
-Service - dev-service-job-services
-Task Definition - dev-td-job-services
+- Service - dev-service-job-services
+- Task Definition - dev-td-job-services
 
 *Containers*
 - aws-xray-daemon	amazon/aws-xray-daemon:1
