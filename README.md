@@ -1,4 +1,4 @@
-# Microservice Architecture with Spring
+# Inter-Microservice Communication with OpenFeign using AWS AppMesh
 
 Microservice is a service-oriented architecture where an application is deployed as a collection of loosely-coupled 
 services. The goal is to make each service independent, fine-grained, scalable and flexible which allows faster 
@@ -10,7 +10,7 @@ This project takes advantage of the AWS infrastructure and it's services such as
  - AppMesh - service mesh that provides application level networking (normally used between internal services)
  - Load Balancer - use for external client connection
 
-![Microservice Architecture with Spring](./docs/architecture.png)
+![Microservice Architecture with Spring on AWS](./docs/architecture.png)
 
 ## Our Microservices
 
