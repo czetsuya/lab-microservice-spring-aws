@@ -1,4 +1,4 @@
-package com.czetsuyatech.jobs.web.config;
+package com.czetsuyatech.jobs.config;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

@@ -1,4 +1,4 @@
-package com.czetsuyatech.jobs.web.config;
+package com.czetsuyatech.jobs.config;
 
 import com.amazonaws.xray.AWSXRay;
 import com.amazonaws.xray.AWSXRayRecorder;
