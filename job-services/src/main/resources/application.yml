@@ -25,3 +25,7 @@ feign:
         enabled: true
       request:
         enabled: true
+cx:
+  aws:
+    xray:
+      enabled: true
