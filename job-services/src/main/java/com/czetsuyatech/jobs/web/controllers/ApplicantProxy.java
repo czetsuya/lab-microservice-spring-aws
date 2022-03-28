@@ -12,4 +12,7 @@ public interface ApplicantProxy {
 
   @GetMapping("/applicants/top")
   List<String> getTopApplicantsByJob();
+
+  @GetMapping("/applicants/thread-test")
+  String threadTest();
 }

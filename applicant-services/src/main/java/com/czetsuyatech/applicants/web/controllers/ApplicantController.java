@@ -15,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 @RestController
 public class ApplicantController {
 
+  public static final long TIMEOUT = 300000L;
+
   @Value("${server.port}")
   private int port;
 
@@ -43,5 +45,13 @@ public class ApplicantController {
 
     log.debug("port={} default top applicant", port);
     return Arrays.asList("Ed from circuit breaker");
+  }
+
+  @GetMapping("/thread-test")
+  public String threadTest() {
+
+    log.debug("thread test");
+
+    return "application >> thread test";
   }
 }

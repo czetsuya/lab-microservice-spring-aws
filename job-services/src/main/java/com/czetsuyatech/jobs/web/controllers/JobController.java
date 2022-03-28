@@ -1,11 +1,14 @@
 package com.czetsuyatech.jobs.web.controllers;
 
 import com.czetsuyatech.jobs.api.dtos.outbound.JobWithApplicants;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.async.DeferredResult;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -13,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class JobController {
 
   private final ApplicantProxy applicantProxy;
+  private final Executor executor;
+
+  public static final long TIMEOUT = 300000L;
 
   @GetMapping("/profiles")
   public ResponseEntity listJobsWithApplicantProfiles() {
@@ -38,5 +44,21 @@ public class JobController {
     result.setApplicants(applicantProxy.getTopApplicantsByJob());
 
     return ResponseEntity.ok().body(result);
+  }
+
+  @GetMapping("/thread-test")
+  public DeferredResult<String> threadTest() {
+
+    log.debug("thread test");
+
+    DeferredResult<String> result = new DeferredResult<>(TIMEOUT);
+
+    CompletableFuture<String> future =
+        CompletableFuture.supplyAsync(() -> applicantProxy.threadTest(), executor);
+
+    future.thenApply(result::setResult)
+        .exceptionally(result::setErrorResult);
+
+    return result;
   }
 }
