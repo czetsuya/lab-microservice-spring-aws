@@ -1,6 +1,7 @@
 package com.czetsuyatech.jobs.web.controllers;
 
 import com.czetsuyatech.jobs.api.dtos.outbound.JobWithApplicants;
+import com.czetsuyatech.jobs.services.JobService;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 public class JobController {
 
   private final ApplicantProxy applicantProxy;
+  private final JobService jobService;
   private final Executor executor;
 
   public static final long TIMEOUT = 300000L;
@@ -60,5 +62,14 @@ public class JobController {
         .exceptionally(result::setErrorResult);
 
     return result;
+  }
+
+  @GetMapping("/service-test")
+  public String serviceTest() {
+
+    log.info("service test");
+    jobService.serviceTest();
+
+    return "service test";
   }
 }

@@ -22,3 +22,17 @@ resilience4j:
         maxRetryAttempts: 5
         waitDuration: 1
         enableExponentialBackoff: true
+feign:
+  httpclient:
+    enabled: true
+    connection-timeout: 5000
+  client:
+    compression:
+      response:
+        enabled: true
+      request:
+        enabled: true
+cx:
+  aws:
+    xray:
+      enabled: true

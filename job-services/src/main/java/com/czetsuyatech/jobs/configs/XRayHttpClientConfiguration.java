@@ -1,4 +1,4 @@
-package com.czetsuyatech.jobs.config;
+package com.czetsuyatech.jobs.configs;
 
 import com.amazonaws.xray.proxies.apache.http.HttpClientBuilder;
 import lombok.extern.slf4j.Slf4j;

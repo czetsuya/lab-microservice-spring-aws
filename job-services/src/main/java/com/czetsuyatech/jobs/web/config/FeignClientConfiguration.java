@@ -1,7 +1,7 @@
 package com.czetsuyatech.jobs.web.config;
 
 import com.amazonaws.xray.proxies.apache.http.HttpClientBuilder;
-import com.czetsuyatech.jobs.config.ConditionalXrayEnabled;
+import com.czetsuyatech.jobs.configs.ConditionalXrayEnabled;
 import feign.Client;
 import feign.httpclient.ApacheHttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -15,17 +15,6 @@ import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 @ConditionalXrayEnabled
 @Configuration(proxyBeanMethods = false)
 public class FeignClientConfiguration {
-
-//  @Bean
-//  public Feign.Builder feignBuilder(HttpClientBuilder httpClientBuilder,
-//      FeignHttpClientProperties httpClientProperties) {
-//
-//    //aws xray http client
-//    CloseableHttpClient client = HttpClientBuilder.create().build();
-//    return Feign.builder()
-//        .retryer(Retryer.NEVER_RETRY)
-//        .client(client(httpClientBuilder, httpClientProperties));
-//  }
 
   @Bean
   public Client client(HttpClientBuilder httpClientBuilder, FeignHttpClientProperties httpClientProperties) {

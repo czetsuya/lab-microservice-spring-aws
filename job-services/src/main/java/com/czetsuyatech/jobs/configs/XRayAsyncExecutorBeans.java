@@ -1,4 +1,4 @@
-package com.czetsuyatech.jobs.config;
+package com.czetsuyatech.jobs.configs;
 
 import com.amazonaws.xray.contexts.SegmentContextExecutors;
 import java.util.concurrent.Executor;

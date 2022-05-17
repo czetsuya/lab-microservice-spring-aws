@@ -18,17 +18,9 @@ import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
 public class FeignClientConfiguration {
 
   @Bean
-  public Feign.Builder feignBuilder(FeignHttpClientProperties httpClientProperties) {
+  public Client client(HttpClientBuilder httpClientBuilder, FeignHttpClientProperties httpClientProperties) {
 
-    //aws xray http client
-    CloseableHttpClient client = HttpClientBuilder.create().build();
-    return Feign.builder()
-        .retryer(Retryer.NEVER_RETRY)
-        .client(client(httpClientProperties));
-  }
-
-//  @Bean
-  public Client client(FeignHttpClientProperties httpClientProperties) {
+    httpClientBuilder = httpClientBuilder != null ? httpClientBuilder : HttpClientBuilder.create();
 
     final PoolingHttpClientConnectionManager poolingHttpClientConnectionManager =
         new PoolingHttpClientConnectionManager();
@@ -43,7 +35,7 @@ public class FeignClientConfiguration {
         .build();
 
     return new ApacheHttpClient(
-        HttpClientBuilder.create()
+        httpClientBuilder
             .setConnectionManager(poolingHttpClientConnectionManager)
             .setDefaultRequestConfig(defaultRequestConfig)
             .build()
