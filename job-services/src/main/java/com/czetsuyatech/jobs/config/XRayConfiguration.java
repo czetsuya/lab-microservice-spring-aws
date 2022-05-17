@@ -3,7 +3,6 @@ package com.czetsuyatech.jobs.config;
 import com.amazonaws.xray.AWSXRay;
 import com.amazonaws.xray.AWSXRayRecorder;
 import com.amazonaws.xray.AWSXRayRecorderBuilder;
-import com.amazonaws.xray.javax.servlet.AWSXRayServletFilter;
 import com.amazonaws.xray.plugins.EC2Plugin;
 import com.amazonaws.xray.plugins.ECSPlugin;
 import com.amazonaws.xray.slf4j.SLF4JSegmentListener;
@@ -13,7 +12,6 @@ import com.amazonaws.xray.strategy.RuntimeErrorContextMissingStrategy;
 import com.amazonaws.xray.strategy.sampling.AllSamplingStrategy;
 import com.amazonaws.xray.strategy.sampling.CentralizedSamplingStrategy;
 import com.amazonaws.xray.strategy.sampling.SamplingStrategy;
-import javax.servlet.Filter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,13 +23,6 @@ public class XRayConfiguration {
 
   public static final String AWS_XRAY_SAMPLE_ALL = "AWS_XRAY_SAMPLE_ALL";
   public static final String AWS_XRAY_CONTEXT_MISSING = "AWS_XRAY_CONTEXT_MISSING";
-
-  @Bean
-  public Filter tracingFilter(final AWSXRayRecorder awsxRayRecorder) {
-
-    log.info("setup filter");
-    return new AWSXRayServletFilter("web-filter");
-  }
 
   @Bean
   public AWSXRayRecorder awsXRayRecorder() {

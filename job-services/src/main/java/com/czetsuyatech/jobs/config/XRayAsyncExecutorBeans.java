@@ -15,6 +15,7 @@ public class XRayAsyncExecutorBeans {
 
   @Bean
   @Primary
+  @ConditionalXrayEnabled
   public Executor xrayExecutor() {
     return SegmentContextExecutors.newSegmentContextExecutor();
   }
