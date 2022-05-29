@@ -1,0 +1,40 @@
+<configuration>
+
+  <appender name="HTTP" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [HTTP] [%-5level] - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="APP" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [APP ] [%-5level] [%X{AWS-XRAY-TRACE-ID}] - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <appender name="MAIN" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>[%d{yyyy-MM-dd HH:mm:ss.SSS}] [MAIN] [%-5level] [%-40.40logger{40}] - %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.zalando.logbook" level="INFO" additivity="false">
+    <appender-ref ref="HTTP"/>
+  </logger>
+
+  <logger name="org.zalando.problem.spring.web.advice" level="INFO" additivity="false">
+    <appender-ref ref="APP"/>
+  </logger>
+
+  <logger name="com.czetsuyatech" level="INFO" additivity="false">
+    <appender-ref ref="APP"/>
+  </logger>
+
+  <root level="info">
+    <appender-ref ref="MAIN"/>
+  </root>
+
+</configuration>

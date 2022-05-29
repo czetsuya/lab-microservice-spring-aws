@@ -63,6 +63,7 @@ public class XRayConfiguration {
       log.info("sampling strategy: Centralized");
       return new CentralizedSamplingStrategy();
     }
+
   }
 
   private ContextMissingStrategy getContextMissingStrategy() {
