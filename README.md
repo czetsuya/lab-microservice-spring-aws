@@ -71,6 +71,8 @@ As we can see in the logs, it started from api-gateway, pass thru job-services, 
 
 ![Log trace](./docs/log_trace.jpg)
 
+![image](https://user-images.githubusercontent.com/804528/168968562-d85b5965-ced5-4211-9fb9-667e8132222a.png)
+
 ## AWS Deployment
 
 ### ECR
